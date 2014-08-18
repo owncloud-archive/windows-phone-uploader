@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest" xmlns:m3="http://schemas.microsoft.com/appx/2014/manifest" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest">
+  <Identity Name="f4be2220-3440-4638-81ad-f0a549fc543a" Publisher="CN=Clement" Version="1.0.0.0" />
+  <mp:PhoneIdentity PhoneProductId="12877982-1bf1-415e-8cb4-130e1315bf11" PhonePublisherId="e959cde8-05dd-4024-bd31-50801b5b4e72" />
+  <Properties>
+    <DisplayName>owncloudTools</DisplayName>
+    <PublisherDisplayName>www.clem2k.com</PublisherDisplayName>
+    <Logo>Assets\StoreLogo.png</Logo>
+  </Properties>
+  <Prerequisites>
+    <OSMinVersion>6.3.1</OSMinVersion>
+    <OSMaxVersionTested>6.3.1</OSMaxVersionTested>
+  </Prerequisites>
+  <Resources>
+    <Resource Language="x-generate" />
+  </Resources>
+  <Applications>
+    <Application Id="App" Executable="AGHost.exe" EntryPoint="MainPage.xaml">
+      <m3:VisualElements DisplayName="webDav Photo Tool" Square150x150Logo="Assets\SquareTile150x150.png" Square44x44Logo="Assets\Logo.png" Description="Take pictures with your phone and store them to your personnal webDav" ForegroundText="light" BackgroundColor="#464646" ToastCapable="true">
+        <m3:DefaultTile Square71x71Logo="Assets\SquareTile71x71.png">
+        </m3:DefaultTile>
+        <m3:SplashScreen Image="Assets\SplashScreen.png" />
+      </m3:VisualElements>
+      <Extensions>
+        <Extension Category="windows.backgroundTasks" EntryPoint="AgHost.BackgroundTask">
+          <BackgroundTasks>
+            <Task Type="systemEvent" />
+            <Task Type="timer" />
+            <Task Type="pushNotification" />
+            <m2:Task Type="location" />
+            <m2:Task Type="deviceUse" />
+            <m3:Task Type="chatMessageNotification" />
+          </BackgroundTasks>
+        </Extension>
+      </Extensions>
+    </Application>
+  </Applications>
+  <Capabilities>
+    <Capability Name="picturesLibrary" />
+    <Capability Name="internetClientServer" />
+    <Capability Name="videosLibrary" />
+    <Capability Name="removableStorage" />
+    <DeviceCapability Name="webcam" />
+    <DeviceCapability Name="location" />
+    <DeviceCapability Name="proximity" />
+  </Capabilities>
+  <Extensions>
+    <Extension Category="windows.activatableClass.inProcessServer">
+      <InProcessServer>
+        <Path>AgHostSvcs.dll</Path>
+        <ActivatableClass ActivatableClassId="AgHost.BackgroundTask" ThreadingModel="both" />
+      </InProcessServer>
+    </Extension>
+  </Extensions>
+</Package>
